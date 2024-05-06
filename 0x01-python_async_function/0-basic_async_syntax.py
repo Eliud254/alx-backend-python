@@ -1,29 +1,25 @@
 #!/usr/bin/env python3
+"""
+This script defines an asynchronous coroutine that introduces a delay before yielding control back.
+"""
+
 import asyncio
 import random
 
-
-async def wait_random(max_delay=10):
+async def wait_random(max_delay: int = 10) -> float:
     """
-    Asynchronous coroutine that waits for a random delay between 0 and max_delay seconds.
-    :param max_delay: Maximum delay (default 10 seconds)
-    :return: Random delay
+    Asynchronous coroutine that simulates a random delay before yielding control.
+
+    Parameters:
+    - max_delay: The upper limit for the delay time.
+    
+    Returns:
+    - A randomly generated decimal number within the range of 0 to max_delay.
     """
-    delay = random.uniform(0, max_delay)
-    await asyncio.sleep(delay)
-    return delay
-
-
-# Example usage
-async def main():
-    """
-    Example usage of wait_random.
-    """
-    print(await wait_random())
-    print(await wait_random(5))
-    print(await wait_random(15))
-
-
-if __name__ == "__main__":
-    asyncio.run(main())
+    # Generate a random delay between 0 and max_delay
+    rand_delay = random.uniform(0, max_delay)
+    # Asynchronously sleep for the generated delay
+    await asyncio.sleep(rand_delay)
+    # Return the generated delay
+    return rand_delay
 
